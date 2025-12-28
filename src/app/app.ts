@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { ProductList } from './myComponents/product-list/product-list';
 import { Product } from './models/product';
 import { ProductFilterPipe } from './pipes/productFilterPipe';
@@ -8,7 +9,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProductList, ProductFilterPipe, CommonModule],
+  imports: [RouterOutlet, ProductList, ProductFilterPipe, CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -38,17 +39,6 @@ export class App {
   //Child component event handler
   onChildSelected(productId: number) {
     this.selectedProductId.set(productId);
-  }
-
-  //Refactor ödev: ngmodele çevirilecek
-  //INput eventlerinden ngmodel olmadığı için ayrı bir signal güncellemesi
-  onSearchInput(event: Event) {
-    this.searchText.set((event.target as HTMLInputElement).value);
-  }
-
-  onMaxPriceInput(event: Event) {
-    const raw = (event.target as HTMLInputElement).value.trim();
-    this.maxPrice.set(raw === '' ? null : Number(raw));
   }
 
   //ödev: custom pipe dışında düz filtreleme

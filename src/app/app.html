@@ -49,12 +49,12 @@
 
 <label>
   Ürün Adı Filtre:
-  <input type="text" (input)="onSearchInput($event)" placeholder="Ürün adı girin">
+  <input type="text" [(ngModel)]="searchText" placeholder="Ürün adı girin">
 </label>
 
 <label>
   Maksimum Fiyat Filtre:
-  <input type="number" (input)="onMaxPriceInput($event)" placeholder="Maksimum fiyat girin">
+  <input type="number" [(ngModel)]="maxPrice" placeholder="Maksimum fiyat girin">
 </label>
 
 <app-product-list 
