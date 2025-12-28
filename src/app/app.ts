@@ -41,7 +41,20 @@ export class App {
     this.selectedProductId.set(productId);
   }
 
-  //ödev: custom pipe dışında düz filtreleme
+  //Computed signal ile düz filtreleme (pipe alternatifi)
+  filteredProducts = computed(() => {
+    const search = this.searchText().toLowerCase().trim();
+    const max = this.maxPrice();
+
+    return this.products().filter(product => {
+      //İsim filtresi
+      const matchesName = search === '' || product.name.toLowerCase().includes(search);
+      //Fiyat filtresi
+      const matchesPrice = max === null || product.price <= max;
+
+      return matchesName && matchesPrice;
+    });
+  });
 
   cart = signal<CartItem[]>([]);
 

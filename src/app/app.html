@@ -57,9 +57,12 @@
   <input type="number" [(ngModel)]="maxPrice" placeholder="Maksimum fiyat girin">
 </label>
 
-<app-product-list 
-  [products]="products() |productFilter: searchText():maxPrice()" 
-  (selected)="onChildSelected($event)"
-  (addToCart)="onAddToCart($event)"
->
+<!-- Yöntem 1: Custom Pipe ile filtreleme -->
+<!-- <app-product-list [products]="products() | productFilter: searchText():maxPrice()" (selected)="onChildSelected($event)"
+  (addToCart)="onAddToCart($event)">
+</app-product-list> -->
+
+<!-- Yöntem 2: Computed Signal ile düz filtreleme (aktif) -->
+<app-product-list [products]="filteredProducts()" (selected)="onChildSelected($event)"
+  (addToCart)="onAddToCart($event)">
 </app-product-list>
